@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  backend:
+    build:
+      context: ./
+    ports:
+      - 8000:8000
+    volumes:
+      - "backend_uploads:/app/upload"
+
+volumes:
+  backend_uploads:
