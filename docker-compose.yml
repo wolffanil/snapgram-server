@@ -4,8 +4,6 @@ services:
   backend:
     build:
       context: ./
-    ports:
-      - 8000:8000
     volumes:
       - "backend_uploads:/app/upload"
 
