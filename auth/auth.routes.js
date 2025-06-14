@@ -22,7 +22,8 @@ router.use(session);
 
 router.route("/register").post(verifyCode, register);
 
-router.route("/login").post(recaptchaCkeck, verifyCode, login);
+// router.route("/login").post(recaptchaCkeck, verifyCode, login);
+router.route("/login").post(verifyCode, login);
 
 router.route("/logout").post(protect, logout);
 
