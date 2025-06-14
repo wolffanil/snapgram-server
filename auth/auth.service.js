@@ -130,7 +130,7 @@ class AuthService {
       if (candidate) {
         return next(
           new AppError(
-            `Пользователь с почтовым адресом ${email} или именнем ${name} уже существует `,
+            `Пользователь с почтовым адресом ${email} или именем ${name} уже существует `,
             404
           )
         );
