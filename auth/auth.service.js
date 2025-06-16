@@ -153,7 +153,7 @@ class AuthService {
         return next(new AppError("Логин или пароль не верны", 404));
       }
 
-      const isBan = await this.checkIsBan(email);
+      const isBan = user?.isBan;
 
       if (isBan) {
         return next(new AppError("Пользователь забанен", 404));
@@ -191,7 +191,7 @@ class AuthService {
 
     if (!user) return next(new AppError("пользователь не найден", 404));
 
-    const isBan = await this.checkIsBan(email);
+    const isBan = user?.isBan;
 
     if (isBan) {
       return next(new AppError("пользователь забанен", 404));
