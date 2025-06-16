@@ -7,11 +7,15 @@ const {
   deletePost,
   searchPosts,
   updateCountRepost,
+  getAll,
 } = require("./post.controller.js");
 const protect = require("../middlewares/auth.middleware.js");
 const commentRouter = require("../comment/comment.routes.js");
 
 const router = express.Router();
+
+router.route("/admin").get(getAll);
+router.route("/admin/:postId").delete(deletePost);
 
 router.use(protect);
 

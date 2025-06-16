@@ -108,6 +108,34 @@ class UserService {
 
     return true;
   }
+
+  async getAll() {
+    const users = await User.find({}).sort({ createdAt: -1 });
+
+    return users;
+  }
+
+  async setBan(userId) {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { isBan: true },
+      { new: true }
+    );
+
+    await Token.deleteMany({ userId });
+
+    return user;
+  }
+
+  async setUnBan(userId) {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { isBan: false },
+      { new: true }
+    );
+
+    return user;
+  }
 }
 
 module.exports = new UserService();

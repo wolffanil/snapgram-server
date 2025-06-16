@@ -153,12 +153,24 @@ class AuthService {
         return next(new AppError("Логин или пароль не верны", 404));
       }
 
+      const isBan = await this.checkIsBan(email);
+
+      if (isBan) {
+        return next(new AppError("Пользователь забанен", 404));
+      }
+
       await this.sendVerifyCode(user, "Код подтвержде́ние");
 
       return;
     }
 
     return;
+  }
+
+  async checkIsBan(email) {
+    const user = await User.countDocuments({ email, isBan: true });
+
+    return Boolean(user);
   }
 
   async resetCode({ body, next }) {
@@ -178,6 +190,12 @@ class AuthService {
     const user = await User.findOne({ email });
 
     if (!user) return next(new AppError("пользователь не найден", 404));
+
+    const isBan = await this.checkIsBan(email);
+
+    if (isBan) {
+      return next(new AppError("пользователь забанен", 404));
+    }
 
     await this.sendVerifyCode(user, "Код для сброса пароля", "resetPassword");
 

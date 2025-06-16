@@ -118,6 +118,12 @@ class PostService {
     return;
   }
 
+  async getAll() {
+    const posts = await Post.find({}).sort({ createdAt: -1 });
+
+    return posts;
+  }
+
   async searchPosts({ query }) {
     const searchTerm = query.q;
 

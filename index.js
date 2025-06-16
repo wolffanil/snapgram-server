@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.CLIENT_URL],
+    origin: [process.env.CLIENT_URL, process.env.ADMIN_URL],
     exposedHeaders: "set-cookie",
   })
 );

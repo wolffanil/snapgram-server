@@ -50,6 +50,14 @@ class PostContoller {
     });
   });
 
+  getAll = catchAsync(async (req, res, next) => {
+    const posts = await postService.getAll();
+
+    res.status(200).json({
+      posts,
+    });
+  });
+
   searchPosts = catchAsync(async (req, res, next) => {
     const posts = await postService.searchPosts({ query: req.query });
 

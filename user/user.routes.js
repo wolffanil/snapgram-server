@@ -7,12 +7,19 @@ const {
   deleteToken,
   getMyTokens,
   updatePassword,
+  getAll,
+  setBan,
+  setUnBan,
 } = require("./user.controller.js");
 
 const saveRouter = require("../save/save.routes.js");
 const protect = require("../middlewares/auth.middleware.js");
 
 const router = express.Router();
+
+router.route("/admin").get(getAll);
+router.route("/admin/setBan/:id").patch(setBan);
+router.route("/admin/setUnBan/:id").patch(setUnBan);
 
 router.use(protect);
 

@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    isBan: {
+      type: Boolean,
+      default: false,
+    },
     verificationCode: String,
     codeExpiry: Date,
     passwordResetExpires: Date,

@@ -67,6 +67,28 @@ class UserController {
 
     res.status(200).json({ message: "password was updated" });
   });
+
+  getAll = catchAsync(async (req, res, next) => {
+    const users = await userService.getAll();
+
+    res.status(200).json({ users });
+  });
+
+  setBan = catchAsync(async (req, res, next) => {
+    const userId = req.params.id;
+
+    const user = await userService.setBan(userId);
+
+    res.status(200).json({ user });
+  });
+
+  setUnBan = catchAsync(async (req, res, next) => {
+    const userId = req.params.id;
+
+    const user = await userService.setUnBan(userId);
+
+    res.status(200).json({ user });
+  });
 }
 
 module.exports = new UserController();
